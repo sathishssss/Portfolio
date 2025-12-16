@@ -30,7 +30,7 @@ A modern and responsive portfolio website showcasing my skills, projects, and ex
 
 ## 🚀 Live Demo
 
-[View Live Portfolio](https://github.com/sathishssss/Portfolio/index.html)
+[View Live Portfolio](https://github.com/sathishssss/Portfolio/127.0.0.1:5500/index.html)
 
 ## 📸 Screenshots
 
