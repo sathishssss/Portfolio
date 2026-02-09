@@ -97,9 +97,9 @@ Contributions, issues, and feature requests are welcome!
 
 ## 📧 Contact
 
-- **Email:** your.email@example.com
-- **LinkedIn:** [Your LinkedIn](https://linkedin.com/in/your-profile)
-- **GitHub:** [Your GitHub](https://github.com/your-username)
+- **Email:** sathishkumar822022@gmail.com
+- **LinkedIn:** [Your LinkedIn](www.linkedin.com/in/sathish-kumar-sk4)
+- **GitHub:** [Your GitHub]((https://github.com/sathishssss))
 - **Portfolio:** [Your Website](https://your-website.com)
 
 ## 📄 License
