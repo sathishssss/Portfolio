@@ -5,6 +5,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Web Developer Portfolio - Modern Design</title>
+
+    <!-- EmailJS SDK -->
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
     <style>
         * {
             margin: 0;
@@ -94,7 +98,7 @@
             }
         }
 
-        /* Navigation - Glassmorphism */
+        /* Navigation */
         nav {
             position: fixed;
             top: 20px;
@@ -113,87 +117,6 @@
             display: flex;
             gap: 2.5rem;
             list-style: none;
-        }
-
-        .contact-form {
-            max-width: 520px;
-            margin: 2.5rem auto 0;
-            padding: 2rem;
-
-            background: rgba(255, 255, 255, 0.06);
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            border-radius: 14px;
-
-            backdrop-filter: blur(8px);
-        }
-
-        /* FORM GROUP */
-        .form-group {
-            margin-bottom: 1.2rem;
-        }
-
-        /* INPUT & TEXTAREA */
-        .contact-form input,
-        .contact-form textarea {
-            width: 100%;
-            padding: 0.75rem 0.9rem;
-
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.25);
-            border-radius: 6px;
-
-            color: #ffffff;
-            font-size: 0.95rem;
-
-            outline: none;
-            transition: border-color 0.25s ease, background 0.25s ease;
-        }
-
-        .contact-form textarea {
-            resize: none;
-        }
-
-        /* PLACEHOLDER */
-        .contact-form input::placeholder,
-        .contact-form textarea::placeholder {
-            color: rgba(255, 255, 255, 0.6);
-        }
-
-        /* FOCUS */
-        .contact-form input:focus,
-        .contact-form textarea:focus {
-            border-color: var(--accent);
-            background: rgba(255, 255, 255, 0.15);
-        }
-
-        /* BUTTON */
-        .contact-form .btn-primary {
-            width: 100%;
-            padding: 0.8rem;
-
-            background: var(--accent);
-            color: #000;
-
-            border: none;
-            border-radius: 6px;
-
-            font-size: 0.95rem;
-            font-weight: 600;
-
-            cursor: pointer;
-            transition: background 0.3s ease, transform 0.2s ease;
-        }
-
-        .contact-form .btn-primary:hover {
-            background: #00d4db;
-            transform: translateY(-1px);
-        }
-
-        /* MOBILE */
-        @media (max-width: 768px) {
-            .contact-form {
-                padding: 1.5rem;
-            }
         }
 
         nav a {
@@ -237,21 +160,7 @@
             max-width: 1200px;
             width: 100%;
         }
-.footer {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1.2rem 2rem;
-            margin-top: 3rem;
-            background: rgba(255, 255, 255, 0.05);
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(8px);
-            font-size: 0.9rem;
-        }
 
-        .footer-left {
-            color: rgba(255, 255, 255, 0.7);
-        }
         .profile-img-container {
             flex-shrink: 0;
             animation: fadeInLeft 1s ease;
@@ -347,7 +256,7 @@
             transform: translateY(-3px);
         }
 
-        /* Section Styles */
+        /* Sections */
         section {
             padding: 6rem 2rem;
             max-width: 1400px;
@@ -364,11 +273,45 @@
             background-clip: text;
         }
 
-        /* About Section - Glassmorphism Cards */
+        /* About */
         .about-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 2rem;
+        }
+
+        .about-intro {
+            max-width: 700px;
+            margin: 0 auto 3rem auto;
+            text-align: center;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            font-weight: 400;
+            color: rgba(255, 255, 255, 0.85);
+            padding: 1.2rem 1.8rem;
+            border-radius: 14px;
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+            animation: fadeUp 1s ease forwards;
+        }
+
+        .about-intro strong {
+            color: #00e5ff;
+            font-weight: 500;
+        }
+
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .glass-card {
@@ -409,7 +352,7 @@
             color: var(--accent);
         }
 
-        /* Skills Grid */
+        /* Skills */
         .skills-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
@@ -434,7 +377,7 @@
             border-color: var(--accent);
         }
 
-        /* Projects Section - 3D Card Effect */
+        /* Projects */
         .projects-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
@@ -448,7 +391,6 @@
             border-radius: 20px;
             overflow: hidden;
             transition: all 0.3s;
-            position: relative;
             transform-style: preserve-3d;
         }
 
@@ -460,20 +402,12 @@
         .project-img {
             width: 100%;
             height: 250px;
-            background: var(--gradient-3);
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 4rem;
             position: relative;
             overflow: hidden;
-        }
-
-        @media (max-width: 768px) {
-            .about-intro {
-                font-size: 1rem;
-                padding: 1rem 1.2rem;
-            }
         }
 
         .project-img::after {
@@ -493,50 +427,6 @@
 
         .project-info {
             padding: 2rem;
-        }
-
-        .about-intro {
-            max-width: 700px;
-            margin: 0 auto 3rem auto;
-            text-align: center;
-
-            font-size: 1.1rem;
-            line-height: 1.8;
-            font-weight: 400;
-
-            color: rgba(255, 255, 255, 0.85);
-
-            padding: 1.2rem 1.8rem;
-            border-radius: 14px;
-
-            background: rgba(255, 255, 255, 0.08);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-
-            border: 1px solid rgba(255, 255, 255, 0.15);
-
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
-
-            animation: fadeUp 1s ease forwards;
-        }
-
-        /* Highlight keywords (optional) */
-        .about-intro strong {
-            color: #00e5ff;
-            font-weight: 500;
-        }
-
-        /* Fade up animation */
-        @keyframes fadeUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
         }
 
         .project-title {
@@ -572,7 +462,7 @@
             transform: translateY(-2px);
         }
 
-        /* Contact Section */
+        /* Contact */
         .contact-container {
             background: rgba(255, 255, 255, 0.05);
             backdrop-filter: blur(10px);
@@ -619,6 +509,135 @@
             color: var(--accent);
         }
 
+        /* ── CONTACT FORM ── */
+        .contact-form {
+            max-width: 520px;
+            margin: 2.5rem auto 0;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 14px;
+            backdrop-filter: blur(8px);
+        }
+
+        .form-group {
+            margin-bottom: 1.2rem;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 0.75rem 0.9rem;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            border-radius: 6px;
+            color: #ffffff;
+            font-size: 0.95rem;
+            outline: none;
+            transition: border-color 0.25s ease, background 0.25s ease;
+        }
+
+        .contact-form textarea {
+            resize: none;
+        }
+
+        .contact-form input::placeholder,
+        .contact-form textarea::placeholder {
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .contact-form input:focus,
+        .contact-form textarea:focus {
+            border-color: var(--accent);
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        /* Submit button */
+        .contact-form .submit-btn {
+            width: 100%;
+            padding: 0.85rem;
+            background: var(--accent);
+            color: #000;
+            border: none;
+            border-radius: 6px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s ease, transform 0.2s ease, opacity 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .contact-form .submit-btn:hover:not(:disabled) {
+            background: #00d4db;
+            transform: translateY(-1px);
+        }
+
+        .contact-form .submit-btn:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+        }
+
+        /* Status messages */
+        .form-status {
+            margin-top: 1rem;
+            padding: 0.75rem 1rem;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            text-align: center;
+            display: none;
+        }
+
+        .form-status.success {
+            display: block;
+            background: rgba(0, 245, 100, 0.15);
+            border: 1px solid rgba(0, 245, 100, 0.4);
+            color: #00f564;
+        }
+
+        .form-status.error {
+            display: block;
+            background: rgba(255, 60, 60, 0.15);
+            border: 1px solid rgba(255, 60, 60, 0.4);
+            color: #ff6b6b;
+        }
+
+        /* Spinner */
+        .spinner {
+            width: 16px;
+            height: 16px;
+            border: 2px solid rgba(0, 0, 0, 0.3);
+            border-top-color: #000;
+            border-radius: 50%;
+            animation: spin 0.7s linear infinite;
+            display: none;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* Footer */
+        .footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.2rem 2rem;
+            margin-top: 3rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(8px);
+            font-size: 0.9rem;
+        }
+
+        .footer-left {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
         /* Animations */
         @keyframes fadeInUp {
             from {
@@ -632,7 +651,6 @@
             }
         }
 
-        /* Scroll Animation */
         .fade-in {
             opacity: 0;
             transform: translateY(30px);
@@ -676,6 +694,15 @@
 
             section {
                 padding: 4rem 1.5rem;
+            }
+
+            .about-intro {
+                font-size: 1rem;
+                padding: 1rem 1.2rem;
+            }
+
+            .contact-form {
+                padding: 1.5rem;
             }
         }
     </style>
@@ -722,94 +749,60 @@
             and high-performance web applications.
         </p>
         <div class="about-grid fade-in">
-
             <div class="glass-card">
                 <h3 class="card-title">Frontend Developer</h3>
-                <p>
-                    Frontend Developer specializing in Angular, HTML, CSS, and JavaScript,
-                    building scalable and maintainable web applications.
-                </p>
+                <p>Frontend Developer specializing in Angular, HTML, CSS, and JavaScript,
+                    building scalable and maintainable web applications.</p>
             </div>
             <div class="glass-card">
                 <h3 class="card-title">Performance & Clean Code</h3>
-                <p>
-                    Focused on writing clean, reusable code and optimizing performance
-                    for fast and reliable user experiences.
-                </p>
+                <p>Focused on writing clean, reusable code and optimizing performance
+                    for fast and reliable user experiences.</p>
             </div>
             <div class="glass-card">
                 <h3 class="card-title">Continuous Learner</h3>
-                <p>
-                    Always learning new technologies and best practices to stay updated
-                    with modern web development trends.
-                </p>
+                <p>Always learning new technologies and best practices to stay updated
+                    with modern web development trends.</p>
             </div>
         </div>
     </section>
-
-    <!-- <section id="about">
-        <h2 class="section-title fade-in">About Me</h2>
-        <div class="about-grid fade-in">
-            <div class="glass-card">
-                <h3 class="card-title">Creative Problem Solver</h3>
-                <p>Transforming complex challenges into elegant, intuitive solutions with clean, efficient code.</p>
-            </div>
-            <div class="glass-card">
-                <h3 class="card-title">Performance Focused</h3>
-                <p>Building lightning-fast, optimized applications that deliver exceptional user experiences.</p>
-            </div>
-            <div class="glass-card">
-                <h3 class="card-title">Design Enthusiast</h3>
-                <p>Blending aesthetics with functionality to create visually stunning, user-centric interfaces.</p>
-            </div>
-        </div>
-    </section> -->
 
     <section id="skills">
         <h2 class="section-title fade-in">Tech Stack</h2>
         <div class="skills-grid fade-in">
             <div class="skill-card">
-                <img src="./assset/download (2).png" style="height: 100px; width: 110px;" alt="Angular"
-                    class="skill-icon">
+                <img src="./assset/download (2).png" style="height:100px;width:110px;" alt="Angular" class="skill-icon">
                 <h4>Angular</h4>
             </div>
             <div class="skill-card">
-                <img src="./assset/download (1).png" style="height: 100px; width: 110px;" alt="Angular"
-                    class="skill-icon">
-
+                <img src="./assset/download (1).png" style="height:100px;width:110px;" alt="HTML" class="skill-icon">
                 <h4>HTML</h4>
             </div>
             <div class="skill-card">
-                <img src="./assset/download.png" style="height: 100px; width: 110px;" alt="Angular" class="skill-icon">
-
+                <img src="./assset/download.png" style="height:100px;width:110px;" alt="CSS" class="skill-icon">
                 <h4>CSS</h4>
             </div>
             <div class="skill-card">
-                <img src="./assset/download (3).png" style="height: 100px; width: 110px;" alt="Angular"
+                <img src="./assset/download (3).png" style="height:100px;width:110px;" alt="Tailwind"
                     class="skill-icon">
-
                 <h4>Tailwind</h4>
             </div>
             <div class="skill-card">
-                <img src="./assset/download (4).png" style="height: 100px; width: 110px;" alt="Angular"
+                <img src="./assset/download (4).png" style="height:100px;width:110px;" alt="TypeScript"
                     class="skill-icon">
-
                 <h4>TypeScript</h4>
             </div>
             <div class="skill-card">
-                <img src="./assset/download (5).png" style="height: 100px; width: 110px;" alt="Angular"
-                    class="skill-icon">
+                <img src="./assset/download (5).png" style="height:100px;width:110px;" alt="Node.js" class="skill-icon">
                 <h4>Node.js</h4>
             </div>
             <div class="skill-card">
-                <img src="./assset/download (6).png" style="height: 100px; width: 110px;" alt="Angular"
+                <img src="./assset/download (6).png" style="height:100px;width:110px;" alt="Firebase"
                     class="skill-icon">
-
                 <h4>Firebase</h4>
             </div>
             <div class="skill-card">
-                <img src="./assset/download (7).png" style="height: 100px; width: 100px;" alt="Angular"
-                    class="skill-icon">
+                <img src="./assset/download (7).png" style="height:100px;width:100px;" alt="SQL" class="skill-icon">
                 <h4>SQL</h4>
             </div>
         </div>
@@ -831,15 +824,13 @@
                         <span class="tag">Angular</span>
                         <span class="tag">Node.js</span>
                         <span class="tag">Stripe</span>
-                        <span class="tag">SQL </span>
-
+                        <span class="tag">SQL</span>
                     </div>
                 </div>
             </div>
             <div class="project-card">
                 <div class="project-img" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
-                    <img src="./assset/download.jfif" alt="Video Streaming"
-                        style="width:100%;height:100%;object-fit:cover;">
+                    <img src="./assset/download.jfif" alt="Blood Bank" style="width:100%;height:100%;object-fit:cover;">
                 </div>
                 <div class="project-info">
                     <h3 class="project-title">blood-bank-management</h3>
@@ -873,150 +864,165 @@
         </div>
     </section>
 
-    <!-- <section id="contact">
-        <div class="contact-container fade-in">
-            <h2 class="section-title">Let's Connect</h2>
-            <p style="font-size: 1.2rem; color: var(--text-secondary); max-width: 600px; margin: 0 auto;">
-                Open to exciting projects and collaborations. Let's create something amazing together!
-            </p>
-            <div class="contact-grid">
-                <div class="contact-item">
-                    <h3>Email</h3>
-                    <a href="mailto:your.email@example.com">sathishkumar822022@gmail.com</a>
-                </div>
-                <div class="contact-item">
-                    <h3>LinkedIn</h3>
-                    <a href="https://linkedin.com/in/yourprofile"
-                        target="_blank">www.linkedin.com/in/sathish-kumar-sk4</a>
-                </div>
-                <div class="contact-item">
-                    <h3>GitHub</h3>
-                    <a href="https://github.com/yourusername" target="_blank">@sathissssh</a>
-                </div>
-            </div>
-        </div>
-    </section> -->
     <section id="contact">
         <div class="contact-container fade-in">
             <h2 class="section-title">Let's Connect</h2>
-            <!-- 
-            <p class="contact-text">
-                Open to exciting projects and collaborations. Let's create something amazing together!
-            </p> -->
 
             <div class="contact-grid">
                 <div class="contact-item">
                     <h3>Email</h3>
-                    <a href="mailto:sathishkumar822022@gmail.com">
-                        sathishkumar822022@gmail.com
-                    </a>
+                    <a href="mailto:sathishkumar822022@gmail.com">sathishkumar822022@gmail.com</a>
                 </div>
-
                 <div class="contact-item">
                     <h3>LinkedIn</h3>
-                    <a href="https://www.linkedin.com/in/sathish-kumar-sk4" target="_blank">
-                        linkedin.com/in/sathish-kumar-sk4
-                    </a>
+                    <a href="https://www.linkedin.com/in/sathish-kumar-sk4"
+                        target="_blank">linkedin.com/in/sathish-kumar-sk4</a>
                 </div>
-
                 <div class="contact-item">
                     <h3>GitHub</h3>
-                    <a href="https://github.com/sathissssh" target="_blank">
-                        github.com/sathissssh
-                    </a>
+                    <a href="https://github.com/sathissssh" target="_blank">github.com/sathissssh</a>
                 </div>
             </div>
 
-            <!-- CONTACT FORM -->
-            <form class="contact-form">
+            <!-- ── CONTACT FORM ── -->
+            <form class="contact-form" id="contactForm" novalidate>
                 <div class="form-group">
-                    <input type="text" placeholder="Your Name" required />
+                    <input type="text" id="from_name" name="from_name" placeholder="Your Name" required />
+                </div>
+                <div class="form-group">
+                    <input type="email" id="from_email" name="from_email" placeholder="Your Email" required />
+                </div>
+                <div class="form-group">
+                    <textarea rows="5" id="message" name="message" placeholder="Your Message" required></textarea>
                 </div>
 
-                <div class="form-group">
-                    <input type="email" placeholder="Your Email" required />
-                </div>
-
-                <div class="form-group">
-                    <textarea rows="5" placeholder="Your Message" required></textarea>
-                </div>
-
-                <button type="submit" class="btn-primary">
-                    Send Message
+                <button type="submit" class="submit-btn" id="submitBtn">
+                    <span class="spinner" id="spinner"></span>
+                    <span id="btnText">Send Message</span>
                 </button>
+
+                <div class="form-status" id="formStatus"></div>
             </form>
         </div>
-         <footer class="footer">
-            <div class="footer-left">
-                © 2026 Sathish Kumar. All Rights Reserved.
-            </div>
 
+        <footer class="footer">
+            <div class="footer-left">© 2026 Sathish Kumar. All Rights Reserved.</div>
             <div class="footer-right">
                 <img src="./assset/icons8-instagram-48.png" alt="Instagram Icon"
-                    style="height: 20px; vertical-align: middle; margin-right: 5px;" />
-                <a href="https://instagram.com/sathish.pvt._" target="_blank">
-                    Instagram
-                </a>
+                    style="height:20px;vertical-align:middle;margin-right:5px;" />
+                <a href="https://instagram.com/sathish.pvt._" target="_blank">Instagram</a>
             </div>
         </footer>
     </section>
 
     <script>
-        // Smooth scrolling
+        // ─────────────────────────────────────────────────────────────
+        //  EMAILJS SETUP
+        //  Replace the three values below with your actual EmailJS IDs
+        // ─────────────────────────────────────────────────────────────
+        const EMAILJS_PUBLIC_KEY = 'pqoikaHHZgGuZp9ob';     // from EmailJS → Account → API Keys
+        const EMAILJS_SERVICE_ID = 'service_p569zb4';     // from EmailJS → Email Services
+        const EMAILJS_TEMPLATE_ID = 'template_4wnm5rt';    // from EmailJS → Email Templates
+
+        emailjs.init(EMAILJS_PUBLIC_KEY);
+
+        // ── Form submit handler ──────────────────────────────────────
+        document.getElementById('contactForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            const btn = document.getElementById('submitBtn');
+            const spinner = document.getElementById('spinner');
+            const btnText = document.getElementById('btnText');
+            const status = document.getElementById('formStatus');
+
+            // Basic validation
+            const name = document.getElementById('from_name').value.trim();
+            const email = document.getElementById('from_email').value.trim();
+            const message = document.getElementById('message').value.trim();
+
+            if (!name || !email || !message) {
+                showStatus('Please fill in all fields.', 'error');
+                return;
+            }
+
+            if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+                showStatus('Please enter a valid email address.', 'error');
+                return;
+            }
+
+            // Loading state
+            btn.disabled = true;
+            spinner.style.display = 'block';
+            btnText.textContent = 'Sending…';
+            status.style.display = 'none';
+
+            // Build template params — these must match your EmailJS template variables
+            const templateParams = {
+                from_name: name,
+                from_email: email,
+                message: message,
+                to_email: 'sathishkumar822022@gmail.com'
+            };
+
+            emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, templateParams)
+                .then(() => {
+                    showStatus('✅ Message sent! I\'ll get back to you soon.', 'success');
+                    document.getElementById('contactForm').reset();
+                })
+                .catch((err) => {
+                    console.error('EmailJS error:', err);
+                    showStatus('❌ Something went wrong. Please try again or email me directly.', 'error');
+                })
+                .finally(() => {
+                    btn.disabled = false;
+                    spinner.style.display = 'none';
+                    btnText.textContent = 'Send Message';
+                });
+        });
+
+        function showStatus(msg, type) {
+            const el = document.getElementById('formStatus');
+            el.textContent = msg;
+            el.className = 'form-status ' + type;
+            el.style.display = 'block';
+        }
+
+        // ── Smooth scrolling ────────────────────────────────────────
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
                 const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                }
+                if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
             });
         });
 
-        // Scroll animations
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -100px 0px'
-        };
-
+        // ── Scroll-reveal animations ────────────────────────────────
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
+                if (entry.isIntersecting) entry.target.classList.add('visible');
             });
-        }, observerOptions);
+        }, { threshold: 0.1, rootMargin: '0px 0px -100px 0px' });
 
-        document.querySelectorAll('.fade-in').forEach(el => {
-            observer.observe(el);
-        });
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 
-        // Parallax effect for orbs
+        // ── Parallax orbs ───────────────────────────────────────────
         document.addEventListener('mousemove', (e) => {
-            const orbs = document.querySelectorAll('.orb');
             const x = e.clientX / window.innerWidth;
             const y = e.clientY / window.innerHeight;
-
-            orbs.forEach((orb, index) => {
-                const speed = (index + 1) * 20;
+            document.querySelectorAll('.orb').forEach((orb, i) => {
+                const speed = (i + 1) * 20;
                 orb.style.transform = `translate(${x * speed}px, ${y * speed}px)`;
             });
         });
 
-        // 3D tilt effect on project cards
+        // ── 3D tilt on project cards ────────────────────────────────
         document.querySelectorAll('.project-card').forEach(card => {
             card.addEventListener('mousemove', (e) => {
                 const rect = card.getBoundingClientRect();
-                const x = e.clientX - rect.left;
-                const y = e.clientY - rect.top;
-                const centerX = rect.width / 2;
-                const centerY = rect.height / 2;
-                const rotateX = (y - centerY) / 20;
-                const rotateY = (centerX - x) / 20;
-
+                const rotateX = (e.clientY - rect.top - rect.height / 2) / 20;
+                const rotateY = (rect.width / 2 - (e.clientX - rect.left)) / 20;
                 card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-10px)`;
             });
-
             card.addEventListener('mouseleave', () => {
                 card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) translateY(0)';
             });
@@ -1025,5 +1031,3 @@
 </body>
 
 </html>
-
-
